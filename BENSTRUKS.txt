@@ -1,0 +1,29 @@
+Internett instruks:
+	plugg internet switchen inn i port i ruter
+
+	på ruter:
+		interfacen til utsiden:
+			ip address dhcp
+			ip nat outside
+		interfacen til innsiden:
+			ip nat inside
+		ip access-list standard 1
+			permit any
+		ip nat inside source list 1 interface [utsiden] overload
+		ip route 0.0.0.0 0.0.0.0 dhcp
+
+	Gjenta tilsvarende dersom rutere er koblet i serie
+
+SSH instruks:
+	hostname [hostname]
+	ip domain name mynetwork.local
+	crypto key generate rsa
+	2048
+	username cisco privilege 15 secret cisco
+	line vty 0 15
+		transport input ssh
+		login local
+		exec-timeout 60 0
+	enable secret cisco
+	ip default-gateway [gateway-ip]
+	

@@ -1,0 +1,89 @@
+###IP plaN###################################################################
+
+172.16.0.1/24 Nettverk1 gig0/0/0
+PC1 172.16.0.10
+NETTVERK1 P2P 192.168.100.1/30 gig0/0/1 ruter 0
+NETTVERK2 P2P 192.168.100.5/30 gig0/1 ruter 2
+router0 172.16.0.2
+router2 gig0/1 
+router2 172.16.0.254 gig0/0
+standby 172.16.0.1
+10.0.1.0 management vlan VLAN 1
+################################################################################
+
+###ROUTER0###################################################################################
+interface GigabitEthernet0/0/0
+ip address 172.16.0.2 255.255.255.0
+ip nat inside
+standby 1 ip 172.16.0.1
+standby 1 priority 105
+exit
+
+interface GigabitEthernet0/0/1
+ip address 192.168.100.1 255.255.255.252
+ip nat outside
+negotiation auto
+
+router rip
+version 2
+network 172.16.0.0
+network 192.168.100.0
+no auto-summary
+exit
+ip nat inside source list 1 interface GigabitEthernet0/0/0 overload
+ip route 0.0.0.0 0.0.0.0 192.168.100.2
+
+ip access-list standard 1
+ 10 permit 172.16.0.0 0.0.0.255
+
+hostname "ditt navn"
+ip domain name cisco
+crypto key generate rsa
+1024
+enable password cisco
+username cisco password cisco
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+################################################################################################################
+###ROUTER2###
+interface GigabitEthernet0/0
+ip address 172.16.0.254 255.255.255.0
+standby 1 ip 172.16.0.1
+
+exit
+interface GigabitEthernet0/1
+ip address 192.168.100.5 255.255.255.252
+
+exit
+################################################################################################
+###SW1###
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ shutdown
+ negotiation auto
+
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ ip address 10.0.0.1 255.255.255.0
+
+
+
+
+SSH##
+
+hostname "ditt navn"
+ip domain name cisco
+crypto key generate rsa
+1024
+enable password cisco
+username cisco password cisco
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+
