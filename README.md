@@ -92,3 +92,131 @@
 
 **FastEthernet0/13-24**  
 *access VLAN 10*
+
+# Annbefalt mappestruktur
+
+📁 ~/
+
+├── conf.py
+
+├── 📁 ansible/
+
+│    ├── hosts
+
+│     ├── ansible.log
+
+│     ├── home
+
+│     └── 📁 playbooks/
+
+│         ├── ansible.cfg
+
+│         ├── R1.yml
+
+│         ├── R2.yml
+
+│         ├── SW2.yml
+
+│         └── SW3.yml
+
+## NB!! Hvis ansible --version ikke viser filbane til ansible.cfg kjør følgende på linux (vet ikke om det funker på windows)
+**export ANSIBLE_CONFIG=/filbane/til/der/du/legger/cfg**
+
+---
+
+# Bruksanvisning til python scriptet (conf.py)
+
+## Om scriptet
+
+Python-scriptet lar deg koble til en Cisco-router eller switch via seriellport (USB-til-serial) og automatisk sende grunnleggende konfigurasjon, inkludert IP-adresse, SSH-bruker, enable secret, VLAN og mer – alt basert på input fra brukeren.
+
+## Forutsetninger
+
+- Python 3.x installert
+- Cisco-enheter (Router eller Switch) med seriell konsollport
+- USB-til-serial adapter installert og tilkoblet
+- Riktig COM-port eller `/dev/ttyUSBx` tilgjengelig
+
+## Avhengigheter
+
+Installer `pyserial` hvis du ikke allerede har det:
+
+```bash
+pip install pyserial
+```
+
+## Bruk
+
+1. **Kjør scriptet** i terminal eller kommandolinje:
+
+```bash
+python3 conf.py
+```
+
+2. **Velg seriellport:**
+   - På Windows: Skriv inn portnummer (f.eks. `3` for `COM3`)
+   - På Linux/macOS: Skriv inn portnavn (f.eks. `S4` for `/dev/ttyS4`)
+
+3. **Velg enhetstype:**
+   - `R` for Router
+   - `S` for Switch
+
+4. **Følg instruksjonene i terminalen**:
+   - Skriv inn ønsket hostname
+   - Angi port, IP-adresse, VLAN, brukernavn og passord avhengig av valgt enhet
+   - Velg om switchport skal være i `access` eller `trunk` modus
+
+## Hva scriptet gjør
+
+### Router:
+
+* Setter hostname
+* Konfigurerer management-grensesnitt med IP-adresse
+* Aktiverer SSH og genererer RSA-nøkkel
+* Lager lokal bruker og enable secret
+* Konfigurerer VTY-linjer for SSH
+
+### Switch:
+
+* Lager VLAN for management
+* Konfigurerer `vlan` interface med IP
+* Setter trunk eller access-modus på valgt port
+* Aktiverer SSH og oppretter lokal bruker
+* Setter enable secret og default gateway
+
+## Etter konfigurasjon
+
+* Kommandoene sendes sekvensielt over konsoll
+* Scriptet skriver ut responsen fra enheten
+* Tilkoblingen lukkes automatisk
+
+## Tips ved feil
+
+* Sørg for at COM-/tty-porten er riktig og ikke er i bruk av et annet program som PuTTY (Dette har jeg gjort 10000 ganger)
+* Hvis scriptet henger så kjør scriptet på nytt, kan hende du må fjerne enable secret før du kjører igjen hvis det gikk gjennom
+* Bruk USB-til-serial driver fra produsenten hvis standard driver feiler
+* **DET KJØRES INGEN WRITE MEMORY VERKEN I CONF.PY ELLER I ANSIBLE SÅ IKKE RESTART ENHETER**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
