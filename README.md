@@ -1,5 +1,5 @@
 # SW1 | CISCO 3650
-	**VLAN1**
+	** VLAN1 **
 		172.16.0.4 
 
 	**GigabitEthernet1/0/1 -> R1_STUD2**
