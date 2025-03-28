@@ -119,8 +119,6 @@
 
 │         └── SW3.yml
 
-## NB!! Hvis ansible --version ikke viser filbane til ansible.cfg kjør følgende på linux (vet ikke om det funker på windows)
-**export ANSIBLE_CONFIG=/filbane/til/der/du/legger/cfg**
 
 ---
 
@@ -197,13 +195,14 @@ python3 conf.py
 * Bruk USB-til-serial driver fra produsenten hvis standard driver feiler
 * **DET KJØRES INGEN WRITE MEMORY VERKEN I CONF.PY ELLER I ANSIBLE SÅ IKKE RESTART ENHETER**
 
+---
 
-
-
-
-
-
-
+# Bruksannvisning for ANSIBLE
+* Ikke så mye å si her
+* Kjør i rekkefølge R1, R2, SW2, SW3
+  
+## NB!! Hvis ansible --version ikke viser filbane til ansible.cfg kjør følgende på linux (vet ikke om det funker på windows)
+**export ANSIBLE_CONFIG=/filbane/til/der/du/legger/cfg**
 
 
 
