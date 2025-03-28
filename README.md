@@ -1,4 +1,4 @@
-###SW1 | CISCO 3650
+#SW1 | CISCO 3650
 	##VLAN1 
 		172.16.0.4 
 
@@ -7,7 +7,7 @@
 	##GigabitEthernet1/0/2 -> R2_STUD2
 		trunk
 	
-###R1_STUD1 | CISCO 4221
+#R1_STUD1 | CISCO 4221
 
 	gig0/0/0 | SW1_STUD2
 		172.16.0.2/24
