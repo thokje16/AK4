@@ -1,13 +1,13 @@
-#NETTVERKSOPPSETT
+# NETTVERKSOPPSETT
 
 ## SW1 | CISCO 3650
-	 **VLAN1**
-		172.16.0.4 
+ **VLAN1**
+	172.16.0.4 
 
-	GigabitEthernet1/0/1 -> R1_STUD2**
-		trunk
-	GigabitEthernet1/0/2 -> R2_STUD2
-		trunk
+**GigabitEthernet1/0/1 -> R1_STUD2**
+	trunk
+**GigabitEthernet1/0/2 -> R2_STUD2**
+	trunk
 	
 # R1_STUD1 | CISCO 4221
 
