@@ -1,0 +1,38 @@
+---
+- name: SWITCH 2 SETUP
+  hosts: 10.10.99.201
+  gather_facts: false
+
+  tasks:
+    - name: VLAN 10 setup
+      ios_config:
+        lines:
+          - name STUD1
+        parents: vlan 10
+   - name: VLAN 20 setup
+      ios_config:
+        lines:
+          - name STUD2
+        parents: vlan 20
+    - name: Trunking 101
+      ios_config:
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan all
+          - no shutdown
+        parents: interface gig1/0/1
+    - name: Trunking 102
+      ios_config:
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan all
+          - no shutdown
+        parents: interface gig1/0/2
+    - name: Trunking 103
+      ios_config:
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan all
+          - no shutdown
+        parents: interface gig1/0/3
+

@@ -1,0 +1,58 @@
+---
+- name: Ruter2 config
+  hosts: 172.16.0.3
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: gig0/1
+      ios_config:
+        parents: interface Gig0/0/1
+        lines:
+          - no shutdown
+
+    - name: SUBINT 20 STUD2 VLAN
+      ios_config:
+        parents: interface gig0/0/1.20
+        lines:
+          - encapsulation dot1Q 20
+          - ip address 10.10.20.3 255.255.255.0
+          - no shutdown
+    - name: SUBINT 99 MGMT
+      ios_config:
+        parents: interface gig0/0/1.99
+        lines:
+          - encapsulation dot1Q 99
+          - ip address 10.10.99.13 255.255.255.0
+          - no shutdown
+    - name: HSRP opp til mgmt
+      ios_config:
+        parents: interface gig0/0/0
+        lines:
+          - standby 1 ip 172.16.0.1
+          - standby 1 priority 101
+    - name: HSRP Til 20
+      ios_config:
+        parents: interface gig0/0/1.20
+        lines:
+          - standby 2 ip 10.10.20.1
+          - standby 2 priority 101
+    - name: HSRP til 99
+      ios_config:
+        parents: interface gig0/0/1.99
+        lines:
+          - standby 3 ip 10.10.99.11
+          - standby 3 priority 101
+
+    - name: DHCP
+      ios_config:
+        parents: ip dhcp pool STUD2
+        lines:
+          - network 10.10.20.0 255.255.255.0
+          - default-router 10.10.20.1
+
+    - name: EXCLUDE
+      ios_config:
+        lines:
+          - ip dhcp excluded-address 10.10.20.1 10.10.20.149
+          - ip dhcp excluded-address 10.10.20.201 10.10.20.255
