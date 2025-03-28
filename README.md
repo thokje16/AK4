@@ -9,7 +9,7 @@
 	
 # R1_STUD1 | CISCO 4221
 
-	**gig0/0/0 | SW1_STUD2**
+##	**gig0/0/0 | SW1_STUD2**
 		172.16.0.2/24
 	**gig 0/0/1 -> SW2_STUD2**
 		trunk
