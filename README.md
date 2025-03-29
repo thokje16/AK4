@@ -192,7 +192,6 @@ python3 conf.py
 
 * Sørg for at COM-/tty-porten er riktig og ikke er i bruk av et annet program som PuTTY (Dette har jeg gjort 10000 ganger)
 * Hvis scriptet henger så kjør scriptet på nytt, kan hende du må fjerne enable secret før du kjører igjen hvis det gikk gjennom
-* Bruk USB-til-serial driver fra produsenten hvis standard driver feiler
 * **DET KJØRES INGEN WRITE MEMORY VERKEN I CONF.PY ELLER I ANSIBLE SÅ IKKE RESTART ENHETER**
 
 ---
