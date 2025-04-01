@@ -132,7 +132,6 @@ Python-scriptet lar deg koble til en Cisco-router eller switch via seriellport (
 
 - Python 3.x installert
 - Cisco-enheter (Router eller Switch) med seriell konsollport
-- USB-til-serial adapter installert og tilkoblet
 - Riktig COM-port eller `/dev/ttyUSBx` tilgjengelig
 
 ## Avhengigheter
