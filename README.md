@@ -105,8 +105,6 @@
 
 │     ├── ansible.log
 
-│     ├── home
-
 │     └──  playbooks/
 
 │         ├── ansible.cfg
