@@ -1,0 +1,71 @@
+---
+- name: SWITCH 3 SETUP
+  hosts: 10.10.99.202
+  gather_facts: false
+
+  tasks:
+    - name: VLAN 20 setup
+      ios_config:
+        lines:
+          - name STUD2
+        parents: vlan 20
+
+    - name: VLAN 10 setup
+      ios_config:
+        lines:
+          - name STUD1
+        parents: vlan 10
+
+    - name: Trunking 101
+      ios_config:
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan all
+          - no shutdown
+        parents: interface fa0/1
+    - name: Trunking 102
+      ios_config:
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan all
+          - no shutdown
+        parents: interface fa0/2
+    - name: Trunking 103
+      ios_config:
+        lines:
+          - switchport mode trunk
+          - switchport trunk allowed vlan all
+          - no shutdown
+        parents: interface fa0/3
+
+    - name: ACCESS RANGE STUD2
+      ios_config:
+        lines:
+          - switchport mode access
+          - switchport access vlan 20
+          - no shutdown
+        parents:
+          - interface range fa0/4-12
+    - name: ACCESS RANGE STUD1
+      ios_config:
+        lines:
+          - switchport mode access
+          - switchport access vlan 10
+          - no shutdown
+        parents:
+          - interface range fa0/13-24
+
+
+    - name: ETHCHAN 02
+      ios_config:
+        lines:
+          - channelgroup 1 mode on
+        parents:
+          - interface fa0/2
+          - interface fa0/3
+
+
+
+
+
+
