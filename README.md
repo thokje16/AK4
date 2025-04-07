@@ -95,11 +95,11 @@
 
 # Annbefalt mappestruktur
 
-📁 ~/
+ ~/
 
 ├── conf.py
 
-├── 📁 ansible/
+├──  ansible/
 
 │    ├── hosts
 
@@ -107,7 +107,7 @@
 
 │     ├── home
 
-│     └── 📁 playbooks/
+│     └──  playbooks/
 
 │         ├── ansible.cfg
 
@@ -126,12 +126,12 @@
 
 ## Om scriptet
 
-Python-scriptet lar deg koble til en Cisco-router eller switch via seriellport (USB-til-serial) og automatisk sende grunnleggende konfigurasjon, inkludert IP-adresse, SSH-bruker, enable secret, VLAN og mer – alt basert på input fra brukeren.
+Python-scriptet lar deg koble til en Cisco-router eller switch via com kabel og automatisk sende konfigurasjon, inkludert IP-adresse, SSH-bruker, enable secret, VLAN og mer, alt basert på input fra brukeren.
 
 ## Forutsetninger
 
 - Python 3.x installert
-- Cisco-enheter (Router eller Switch) med seriell konsollport
+- Cisco-enheter (Router eller Switch) med konsollport
 - Riktig COM-port eller `/dev/ttyUSBx` tilgjengelig
 
 ## Avhengigheter
@@ -197,6 +197,7 @@ python3 conf.py
 
 # Bruksannvisning for ANSIBLE
 * Ikke så mye å si her
+* Kjør med "ansible-playbook [filnavn]"
 * Kjør i rekkefølge R1, R2, SW2, SW3
   
 ## NB!! Hvis ansible --version ikke viser filbane til ansible.cfg kjør følgende på linux (vet ikke om det funker på windows)
